@@ -1,7 +1,10 @@
 package com.catalogue.recipe.services;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.catalogue.recipe.model.Recipe;
@@ -23,14 +26,15 @@ public class RecipeService {
 		if(recipeList.size() > 0){
 			return recipeList;
 		}else{
-			return new ArrayList<Recipe>();
+			return null;
 		}
 	}
 
 	public boolean add(Recipe recipe) {
 		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		System.out.println(recipe.getCreationTS());
-		recipe.setCreationTS(format.format(recipe.getCreationTS()));
+		Date date = new Date();
+		System.out.println(format.format(date));
+		recipe.setCreationTS(format.format(date));
 		recipeRepo.save(recipe);
 		return true;
 	}
